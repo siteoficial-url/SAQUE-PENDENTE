@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validação de Transferência - Cupom da Vez</title>
+    <style>
+        /* Estilos Globais e Reset Simples */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Paleta de Cores */
+        :root {
+            --cor-fundo: #0a0a0a; /* Preto quase absoluto */
+            --cor-primaria: #ffc107; /* Amarelo Vibrante (Gold/Âmbar) */
+            --cor-secundaria: #1f1f1f; /* Preto Suave para Cards */
+            --cor-texto-claro: #f0f0f0; /* Branco Suave */
+            --cor-texto-escuro: #333; /* Texto em fundos claros */
+        }
+
+        body {
+            background-color: var(--cor-fundo);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--cor-texto-claro);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 450px;
+            padding: 30px;
+            background-color: var(--cor-secundaria);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            border-top: 5px solid var(--cor-primaria); /* Detalhe Amarelo */
+        }
+
+        .header h1 {
+            color: var(--cor-primaria);
+            font-size: 1.8em;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .header p {
+            font-size: 1em;
+            color: var(--cor-texto-claro);
+            margin-bottom: 30px;
+        }
+
+        .valor-recebimento {
+            background-color: var(--cor-fundo);
+            padding: 20px 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 1px solid var(--cor-primaria);
+        }
+
+        .valor-recebimento p {
+            font-size: 1em;
+            margin-bottom: 5px;
+            color: var(--cor-texto-claro);
+        }
+
+        .valor-recebimento span {
+            display: block;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: var(--cor-primaria);
+            letter-spacing: 1px;
+        }
+
+        .aviso {
+            font-size: 1.1em;
+            color: var(--cor-texto-claro);
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .aviso strong {
+            color: var(--cor-primaria);
+        }
+
+        .btn-prosseguir {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--cor-primaria);
+            color: var(--cor-secundaria); /* Texto escuro para alto contraste */
+            border: none;
+            border-radius: 6px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        .btn-prosseguir:hover {
+            background-color: #ffd740; /* Amarelo um pouco mais claro no hover */
+            transform: translateY(-2px);
+        }
+        
+        /* Ícone de Verificação (Apenas um placeholder visual) */
+        .check-icon {
+            font-size: 3em;
+            color: var(--cor-primaria);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="check-icon">✓</div> <div class="header">
+            <h1>TRANSFERÊNCIA PENDENTE</h1>
+            <p>Validação da etapa final para recebimento.</p>
+        </div>
+
+        <div class="valor-recebimento">
+            <p>Valor de Recebimento:</p>
+            <span>R$ 2.889,90</span>
+        </div>
+
+        <div class="aviso">
+            Para <strong>habilitar a transferência</strong> e concluir o processo, é necessário realizar a <strong>ativação do Saque Imediatamente</strong>.
+        </div>
+
+        <button class="btn-prosseguir">
+            Prosseguir e Ativar Saque
+        </button>
+    </div>
+
+</body>
+</html>
