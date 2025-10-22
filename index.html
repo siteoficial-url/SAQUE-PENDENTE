@@ -88,25 +88,60 @@
             color: var(--cor-primaria);
         }
 
+        /* Estilos do Botão com Loading */
         .btn-prosseguir {
             width: 100%;
             padding: 15px;
             background-color: var(--cor-primaria);
-            color: var(--cor-secundaria); /* Texto escuro para alto contraste */
+            color: var(--cor-secundaria); 
             border: none;
             border-radius: 6px;
             font-size: 1.2em;
             font-weight: bold;
             text-transform: uppercase;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.1s;
+            transition: background-color 0.3s, transform 0.1s, opacity 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .btn-prosseguir:hover {
-            background-color: #ffd740; /* Amarelo um pouco mais claro no hover */
+        .btn-prosseguir:not(:disabled):hover {
+            background-color: #ffd740;
             transform: translateY(-2px);
         }
         
+        .btn-prosseguir:disabled {
+            opacity: 0.8;
+            cursor: not-allowed;
+        }
+        
+        /* Spinner CSS */
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.2); /* Cor da borda interna */
+            border-top: 4px solid var(--cor-secundaria); /* Cor da borda giratória (preto) */
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+            display: none; /* Inicia escondido */
+        }
+        
+        /* Mostra o spinner quando o botão estiver no estado de carregamento */
+        .btn-prosseguir.loading .spinner {
+            display: block;
+        }
+        
+        .btn-prosseguir.loading .button-text {
+            /* Opcional: ajustar margem ou display se o texto mudar */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         /* Ícone de Verificação (Apenas um placeholder visual) */
         .check-icon {
             font-size: 3em;
@@ -118,7 +153,9 @@
 <body>
 
     <div class="container">
-        <div class="check-icon">✓</div> <div class="header">
+        <div class="check-icon">✓</div>
+        
+        <div class="header">
             <h1>TRANSFERÊNCIA PENDENTE</h1>
             <p>Validação da etapa final para recebimento.</p>
         </div>
@@ -132,10 +169,33 @@
             Para <strong>habilitar a transferência</strong> e concluir o processo, é necessário realizar a <strong>ativação do Saque Imediatamente</strong>.
         </div>
 
-        <button class="btn-prosseguir">
-            Prosseguir e Ativar Saque
+        <button id="btnProsseguir" class="btn-prosseguir" onclick="iniciarRedirecionamento()">
+            <span class="button-text">Prosseguir e Ativar Saque</span>
+            <div class="spinner"></div>
         </button>
     </div>
+
+    <script>
+        function iniciarRedirecionamento() {
+            const button = document.getElementById('btnProsseguir');
+            const buttonText = button.querySelector('.button-text');
+            const targetUrl = 'https://go.perfectpay.com.br/PPU38CQ2DS0';
+            const delayTime = 2000; // 2 segundos (2000 milissegundos)
+
+            // 1. Inicia o estado de carregamento
+            button.disabled = true;
+            button.classList.add('loading');
+            
+            // 2. Muda o texto do botão para "CARREGANDO..."
+            buttonText.textContent = 'CARREGANDO...';
+
+            // 3. Define o delay para o redirecionamento
+            setTimeout(() => {
+                // 4. Após o delay, redireciona para o link
+                window.location.href = targetUrl;
+            }, delayTime);
+        }
+    </script>
 
 </body>
 </html>
